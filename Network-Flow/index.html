@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="display: none;" >
+<html style="display: none;" lang="zh">
     <head>
     <meta charset="utf-8">
     <!--
@@ -65,7 +65,7 @@
         <link rel="stylesheet" href="/css/ie-blocker.css">
 
         
-            <script src="/js/ie-blocker.en.js"></script>
+            <script src="/js/ie-blocker.zhCN.js"></script>
         
     <![endif]-->
 
@@ -397,7 +397,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>skyair</strong>
-        <span>May 27, 2018</span>
+        <span>5月 27, 2018</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -440,7 +440,7 @@
     
         <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Network Flow | 网络流&url=http://yoursite.com/Network-Flow/index.html&pic=http://yoursite.com/img/favicon.png&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
-                شارك على Weibo
+                分享到微博
             </li>
         </a>
     
@@ -449,7 +449,7 @@
     
         <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Network Flow | 网络流&url=http://yoursite.com/Network-Flow/index.html&via=skyair" target="_blank">
             <li class="mdl-menu__item">
-                شارك على Twitter
+                分享到 Twitter
             </li>
         </a>
     
@@ -458,7 +458,7 @@
     
         <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/Network-Flow/index.html" target="_blank">
             <li class="mdl-menu__item">
-                شارك على Facebook
+                分享到 Facebook
             </li>
         </a>
     
@@ -467,7 +467,7 @@
     
         <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/Network-Flow/index.html" target="_blank">
             <li class="mdl-menu__item">
-                شارك على Google+
+                分享到 Google+
             </li>
         </a>
     
@@ -500,12 +500,200 @@
 <h2 id="最大流"><a href="#最大流" class="headerlink" title="最大流"></a>最大流</h2><p>这是网络流被提出时的最早形式：<br>给定一个有向图，其中有两个特殊的点——源点(Sources)和汇点(Sinks)，每条边有特定的容量(Capacity)，求出从S到T的最大流(MaxFlow)。</p>
 <p>这玩意怎么算？管它呢，去网上搜一个板子，然后比赛时候带上，会抄就行了。P.S.不同板子效果差很多，找个好用的。真正用的时候当一个黑盒子就行了。</p>
 <p>比如下面这个板子：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 1e9</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">15</span>+<span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Network_flow</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> n;                  <span class="comment">//总节点数</span></span><br><span class="line">    <span class="keyword">int</span> flow[maxn][maxn];   <span class="comment">//当前流量</span></span><br><span class="line">    <span class="keyword">int</span> cap[maxn][maxn];    <span class="comment">//容量</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;n=n;</span><br><span class="line">        <span class="built_in">memset</span>(cap,<span class="number">0</span>,<span class="keyword">sizeof</span>(cap));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">solve</span><span class="params">(<span class="keyword">int</span> s,<span class="keyword">int</span> t)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">        <span class="built_in">memset</span>(flow,<span class="number">0</span>,<span class="keyword">sizeof</span>(flow));</span><br><span class="line">        <span class="keyword">int</span> ans=<span class="number">0</span>;  <span class="comment">//最大流</span></span><br><span class="line">        <span class="keyword">int</span> a[maxn];<span class="comment">//a[i]表从s到i点的最小残量</span></span><br><span class="line">        <span class="keyword">int</span> p[maxn];<span class="comment">//增广路上一节点</span></span><br><span class="line">        <span class="keyword">while</span>(<span class="literal">true</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">memset</span>(a,<span class="number">0</span>,<span class="keyword">sizeof</span>(a));</span><br><span class="line">            a[s]=INF;</span><br><span class="line">            q.push(s);</span><br><span class="line">            <span class="keyword">while</span>(!q.empty())</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">int</span> u=q.front(); q.pop();</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> v=<span class="number">1</span>;v&lt;=n;v++)<span class="keyword">if</span>(!a[v] &amp;&amp; cap[u][v]&gt;flow[u][v])</span><br><span class="line">                &#123;</span><br><span class="line">                    p[v]=u;</span><br><span class="line">                    q.push(v);</span><br><span class="line">                    a[v]=min(a[u], cap[u][v]-flow[u][v]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(a[t]==<span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> u=t; u!=s; u=p[u])</span><br><span class="line">            &#123;</span><br><span class="line">                flow[p[u]][u] +=a[t];</span><br><span class="line">                flow[u][p[u]] -=a[t];</span><br><span class="line">            &#125;</span><br><span class="line">            ans +=a[t];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;EK;<span class="comment">//Edmonds_Karp算法</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> T; <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;T);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> kase=<span class="number">1</span>; kase&lt;=T; ++kase)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> n,m;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">        EK.init(n);</span><br><span class="line">        <span class="keyword">while</span>(m--)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> u,v,w;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;u,&amp;v,&amp;w);</span><br><span class="line">            EK.cap[u][v] +=w;<span class="comment">//注意:有重边</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Case %d: %d\n"</span>,kase,EK.solve(<span class="number">1</span>,n));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="CPP">#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;queue&gt;
+#include&lt;algorithm&gt;
+#define INF 1e9
+using namespace std;
+const int maxn=15+5;
+
+struct Network_flow
+{
+    int n;                  //总节点数
+    int flow[maxn][maxn];   //当前流量
+    int cap[maxn][maxn];    //容量
+
+    void init(int n)
+    {
+        this-&gt;n=n;
+        memset(cap,0,sizeof(cap));
+    }
+
+    int solve(int s,int t)
+    {
+        queue&lt;int&gt; q;
+        memset(flow,0,sizeof(flow));
+        int ans=0;  //最大流
+        int a[maxn];//a[i]表从s到i点的最小残量
+        int p[maxn];//增广路上一节点
+        while(true)
+        {
+            memset(a,0,sizeof(a));
+            a[s]=INF;
+            q.push(s);
+            while(!q.empty())
+            {
+                int u=q.front(); q.pop();
+                for(int v=1;v&lt;=n;v++)if(!a[v] &amp;&amp; cap[u][v]&gt;flow[u][v])
+                {
+                    p[v]=u;
+                    q.push(v);
+                    a[v]=min(a[u], cap[u][v]-flow[u][v]);
+                }
+            }
+            if(a[t]==0) break;
+            for(int u=t; u!=s; u=p[u])
+            {
+                flow[p[u]][u] +=a[t];
+                flow[u][p[u]] -=a[t];
+            }
+            ans +=a[t];
+        }
+        return ans;
+    }
+}EK;//Edmonds_Karp算法
+
+int main()
+{
+    int T; scanf(&quot;%d&quot;,&amp;T);
+    for(int kase=1; kase&lt;=T; ++kase)
+    {
+        int n,m;
+        scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+        EK.init(n);
+        while(m--)
+        {
+            int u,v,w;
+            scanf(&quot;%d%d%d&quot;,&amp;u,&amp;v,&amp;w);
+            EK.cap[u][v] +=w;//注意:有重边
+        }
+        printf(&quot;Case %d: %d\n&quot;,kase,EK.solve(1,n));
+    }
+    return 0;
+}
+</code></pre>
 <h2 id="最小费用最大流"><a href="#最小费用最大流" class="headerlink" title="最小费用最大流"></a>最小费用最大流</h2><p>这又是个什么东西呢？就是说现在流过某条路还有花费了，现在要求最大流的前提下会有多少费用。同样的，我们不关心实现，直接去网上COPY个板子下来：</p>
 <p>这是针对洛谷P1251题的(直接交上去会WA并且T，因为没开long long)，纯板子还没整理</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">2005</span>,M=<span class="number">1e6</span>+<span class="number">5</span>,INF=<span class="number">1e9</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> c=getchar();<span class="keyword">int</span> x=<span class="number">0</span>,f=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(c&lt;<span class="string">'0'</span>||c&gt;<span class="string">'9'</span>)&#123;<span class="keyword">if</span>(c==<span class="string">'-'</span>)f=<span class="number">-1</span>; c=getchar();&#125;</span><br><span class="line">    <span class="keyword">while</span>(c&gt;=<span class="string">'0'</span>&amp;&amp;c&lt;=<span class="string">'9'</span>)&#123;x=x*<span class="number">10</span>+c-<span class="string">'0'</span>; c=getchar();&#125;</span><br><span class="line">    <span class="keyword">return</span> x*f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> n,p,fn,fp,sn,sp,r[N],s,t;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> v,ne,c,f,w;</span><br><span class="line">&#125;e[M&lt;&lt;<span class="number">1</span>];</span><br><span class="line"><span class="keyword">int</span> cnt,h[N];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">ins</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v,<span class="keyword">int</span> c,<span class="keyword">int</span> w)</span></span>&#123;</span><br><span class="line">    cnt++;</span><br><span class="line">    e[cnt].v=v;e[cnt].c=c;e[cnt].f=<span class="number">0</span>;e[cnt].w=w;</span><br><span class="line">    e[cnt].ne=h[u];h[u]=cnt;</span><br><span class="line">    cnt++;</span><br><span class="line">    e[cnt].v=u;e[cnt].c=<span class="number">0</span>;e[cnt].f=<span class="number">0</span>;e[cnt].w=-w;</span><br><span class="line">    e[cnt].ne=h[v];h[v]=cnt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">()</span></span>&#123;</span><br><span class="line">    s=<span class="number">0</span>;t=n+n+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        ins(s,i,r[i],<span class="number">0</span>);</span><br><span class="line">        ins(i+n,t,r[i],<span class="number">0</span>);</span><br><span class="line">        ins(s,i+n,INF,p);</span><br><span class="line">        <span class="keyword">if</span>(i+<span class="number">1</span>&lt;=n) ins(i,i+<span class="number">1</span>,INF,<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">if</span>(i+fn&lt;=n) ins(i,i+n+fn,INF,fp);</span><br><span class="line">        <span class="keyword">if</span>(i+sn&lt;=n) ins(i,i+n+sn,INF,sp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> d[N],q[N],head,tail,inq[N],pre[N],pos[N];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">lop</span><span class="params">(<span class="keyword">int</span> &amp;x)</span></span>&#123;<span class="keyword">if</span>(x==N)x=<span class="number">1</span>;<span class="keyword">else</span> <span class="keyword">if</span>(x==<span class="number">0</span>) x==N<span class="number">-1</span>;&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">spfa</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(d,<span class="number">127</span>,<span class="keyword">sizeof</span>(d));</span><br><span class="line">    <span class="built_in">memset</span>(inq,<span class="number">0</span>,<span class="keyword">sizeof</span>(inq));</span><br><span class="line">    head=tail=<span class="number">1</span>;</span><br><span class="line">    d[s]=<span class="number">0</span>;inq[s]=<span class="number">1</span>;q[tail++]=s;</span><br><span class="line">    pre[t]=<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">while</span>(head!=tail)&#123;</span><br><span class="line">        <span class="keyword">int</span> u=q[head++];inq[u]=<span class="number">0</span>;lop(head);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=h[u];i;i=e[i].ne)&#123;</span><br><span class="line">            <span class="keyword">int</span> v=e[i].v,w=e[i].w;</span><br><span class="line">            <span class="keyword">if</span>(d[v]&gt;d[u]+w&amp;&amp;e[i].c&gt;e[i].f)&#123;</span><br><span class="line">                d[v]=d[u]+w;</span><br><span class="line">                pre[v]=u;pos[v]=i;</span><br><span class="line">                <span class="keyword">if</span>(!inq[v])&#123;</span><br><span class="line">                    inq[v]=<span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">if</span>(d[v]&lt;d[q[head]]) head--,lop(head),q[head]=v;</span><br><span class="line">                    <span class="keyword">else</span> q[tail++]=v,lop(tail);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pre[t]!=<span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">mcmf</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> flow=<span class="number">0</span>,cost=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(spfa())&#123;</span><br><span class="line">        <span class="keyword">int</span> f=INF;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=t;i!=s;i=pre[i]) f=min(f,e[pos[i]].c-e[pos[i]].f);</span><br><span class="line">        flow+=f;cost+=d[t]*f;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=t;i!=s;i=pre[i])&#123;</span><br><span class="line">            e[pos[i]].f+=f;</span><br><span class="line">            e[((pos[i]<span class="number">-1</span>)^<span class="number">1</span>)+<span class="number">1</span>].f-=f;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cost;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span></span>&#123;</span><br><span class="line">    n=read();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) r[i]=read();</span><br><span class="line">    p=read();fn=read();fp=read();sn=read();sp=read();</span><br><span class="line">    build();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>,mcmf());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="CPP">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;cmath&gt;
+using namespace std;
+typedef long long ll;
+const int N=2005,M=1e6+5,INF=1e9;
+int read(){
+    char c=getchar();int x=0,f=1;
+    while(c&lt;&#39;0&#39;||c&gt;&#39;9&#39;){if(c==&#39;-&#39;)f=-1; c=getchar();}
+    while(c&gt;=&#39;0&#39;&amp;&amp;c&lt;=&#39;9&#39;){x=x*10+c-&#39;0&#39;; c=getchar();}
+    return x*f;
+}
+int n,p,fn,fp,sn,sp,r[N],s,t;
+struct edge{
+    int v,ne,c,f,w;
+}e[M&lt;&lt;1];
+int cnt,h[N];
+inline void ins(int u,int v,int c,int w){
+    cnt++;
+    e[cnt].v=v;e[cnt].c=c;e[cnt].f=0;e[cnt].w=w;
+    e[cnt].ne=h[u];h[u]=cnt;
+    cnt++;
+    e[cnt].v=u;e[cnt].c=0;e[cnt].f=0;e[cnt].w=-w;
+    e[cnt].ne=h[v];h[v]=cnt;
+}
+void build(){
+    s=0;t=n+n+1;
+    for(int i=1;i&lt;=n;i++){
+        ins(s,i,r[i],0);
+        ins(i+n,t,r[i],0);
+        ins(s,i+n,INF,p);
+        if(i+1&lt;=n) ins(i,i+1,INF,0);
+        if(i+fn&lt;=n) ins(i,i+n+fn,INF,fp);
+        if(i+sn&lt;=n) ins(i,i+n+sn,INF,sp);
+    }
+}
+int d[N],q[N],head,tail,inq[N],pre[N],pos[N];
+inline void lop(int &amp;x){if(x==N)x=1;else if(x==0) x==N-1;}
+bool spfa(){
+    memset(d,127,sizeof(d));
+    memset(inq,0,sizeof(inq));
+    head=tail=1;
+    d[s]=0;inq[s]=1;q[tail++]=s;
+    pre[t]=-1;
+    while(head!=tail){
+        int u=q[head++];inq[u]=0;lop(head);
+        for(int i=h[u];i;i=e[i].ne){
+            int v=e[i].v,w=e[i].w;
+            if(d[v]&gt;d[u]+w&amp;&amp;e[i].c&gt;e[i].f){
+                d[v]=d[u]+w;
+                pre[v]=u;pos[v]=i;
+                if(!inq[v]){
+                    inq[v]=1;
+                    if(d[v]&lt;d[q[head]]) head--,lop(head),q[head]=v;
+                    else q[tail++]=v,lop(tail);
+                }
+            }
+        }
+    }
+    return pre[t]!=-1;
+}
+int mcmf(){
+    int flow=0,cost=0;
+    while(spfa()){
+        int f=INF;
+        for(int i=t;i!=s;i=pre[i]) f=min(f,e[pos[i]].c-e[pos[i]].f);
+        flow+=f;cost+=d[t]*f;
+        for(int i=t;i!=s;i=pre[i]){
+            e[pos[i]].f+=f;
+            e[((pos[i]-1)^1)+1].f-=f;
+        }
+    }
+    return cost;
+}
+int main(int argc, const char * argv[]){
+    n=read();
+    for(int i=1;i&lt;=n;i++) r[i]=read();
+    p=read();fn=read();fp=read();sn=read();sp=read();
+    build();
+    printf(&quot;%d&quot;,mcmf());
+}
+</code></pre>
 <h2 id="二分图最大匹配"><a href="#二分图最大匹配" class="headerlink" title="二分图最大匹配"></a>二分图最大匹配</h2><p>二分图就是说图可以分成两堆点，这两堆点内部没有边相连。最大匹配就是让你找最多的点对（点不能重复使用）。显然，我们只要给一堆点连一个超级源，另一堆点连一个超级汇，然后一波网络流搞定。但是考虑到网络流的代码比较长，这里还有一个阉割版的网络流——匈牙利算法，专门针对这种问题：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 100<span class="comment">//表示x集合和y集合中顶点的最大个数！</span></span></span><br><span class="line"><span class="keyword">int</span> nx, ny;<span class="comment">//x集合和y集合中顶点的个数</span></span><br><span class="line"><span class="keyword">int</span> edge[maxn][maxn];<span class="comment">//edge[i][j]为1表示ij可以匹配</span></span><br><span class="line"><span class="keyword">int</span> cx[maxn], cy[maxn];<span class="comment">//用来记录x集合中匹配的y元素是哪个！</span></span><br><span class="line"><span class="keyword">int</span> visited[maxn];<span class="comment">//用来记录该顶点是否被访问过！</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">path</span><span class="params">(<span class="keyword">int</span> u)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> v;</span><br><span class="line">    <span class="keyword">for</span> (v = <span class="number">0</span>; v &lt; ny; v++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (edge[u][v] &amp;&amp; !visited[v]) &#123;</span><br><span class="line">            visited[v] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (cy[v] == <span class="number">-1</span> || path(cy[v]))<span class="comment">//如果y集合中的v元素没有匹配或者是v已经匹配，但是从cy[v]中能够找到一条增广路</span></span><br><span class="line">            &#123;</span><br><span class="line">                cx[u] = v;</span><br><span class="line">                cy[v] = u;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">maxmatch</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">memset</span>(cx, <span class="number">0xff</span>, <span class="keyword">sizeof</span>(cx));<span class="comment">//初始值为-1表示两个集合中都没有匹配的元素！</span></span><br><span class="line">    <span class="built_in">memset</span>(cy, <span class="number">0xff</span>, <span class="keyword">sizeof</span>(cy));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= nx; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (cx[i] == <span class="number">-1</span>) &#123;</span><br><span class="line">            <span class="built_in">memset</span>(visited, <span class="number">0</span>, <span class="keyword">sizeof</span>(visited));</span><br><span class="line">            res += path(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="CPP">#define maxn 100//表示x集合和y集合中顶点的最大个数！
+int nx, ny;//x集合和y集合中顶点的个数
+int edge[maxn][maxn];//edge[i][j]为1表示ij可以匹配
+int cx[maxn], cy[maxn];//用来记录x集合中匹配的y元素是哪个！
+int visited[maxn];//用来记录该顶点是否被访问过！
+int path(int u) {
+    int v;
+    for (v = 0; v &lt; ny; v++) {
+        if (edge[u][v] &amp;&amp; !visited[v]) {
+            visited[v] = 1;
+            if (cy[v] == -1 || path(cy[v]))//如果y集合中的v元素没有匹配或者是v已经匹配，但是从cy[v]中能够找到一条增广路
+            {
+                cx[u] = v;
+                cy[v] = u;
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
+int maxmatch() {
+    int res = 0;
+    memset(cx, 0xff, sizeof(cx));//初始值为-1表示两个集合中都没有匹配的元素！
+    memset(cy, 0xff, sizeof(cy));
+    for (int i = 0; i &lt;= nx; i++) {
+        if (cx[i] == -1) {
+            memset(visited, 0, sizeof(visited));
+            res += path(i);
+        }
+    }
+    return res;
+}
+</code></pre>
 <p>好了，就先写到这里，以后想起来再更新。</p>
 
         
@@ -534,7 +722,7 @@
     <!-- Next Nav -->
     
         <a href="/hello-world/" id="post_nav-older" class="next-content">
-            أقدم
+            旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
                 <i class="material-icons">arrow_forward</i>
@@ -607,7 +795,7 @@
                 
                     <i class="material-icons sidebar-material-icons">home</i>
                 
-                الرئيسية
+                主页
             </a>
         </li>
         
@@ -620,12 +808,12 @@
                 
                     <i class="material-icons sidebar-material-icons">inbox</i>
                 
-                    أرشيف
+                    归档
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2018/05/">May 2018<span class="sidebar_archives-count">2</span></a>
+                <a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">2</span></a>
             </ul>
         </li>
         
@@ -662,7 +850,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
     <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
         <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-            سمة - Material
+            主题 - Material
             <span class="sidebar-badge badge-circle">i</span>
         </div>
     </a>
@@ -847,6 +1035,10 @@ It will not impact the appearance and can give developers a lot of support :)
 <!-- Import prettify js  -->
 
 
+    
+        <script>lsloader.load("hanabi","/js/hanabi-browser-bundle.js?Pki5+pzkluqu53g+ouMWpA==", true)</script>
+    
+
 
 <!-- Window Load -->
 <!-- add class for prettify -->
@@ -857,6 +1049,10 @@ It will not impact the appearance and can give developers a lot of support :)
     });
 
     
+    
+        
+        
+        HanabiBrowser.start('pre code',true);
     
 </script>
 
